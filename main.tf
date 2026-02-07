@@ -12,8 +12,8 @@ module "aws" {
   config_git_url = "https://github.com/ComputeCanada/puppet-magic_castle.git"
   config_version = "15.0.0"
 
-  cluster_name = "phoenix"
-  domain       = "calculquebec.cloud"
+  cluster_name = "cluster"
+  domain       = "hpc-carpentry.cloud"
   # Rocky Linux 9.4 -  ca-central-1
   # https://rockylinux.org/download
   image = "ami-07fbc9d69b1aa88b9"
@@ -38,14 +38,14 @@ module "aws" {
     }
   }
 
-  public_keys = [file("~/.ssh/id_rsa.pub")]
+  public_keys = [file("~/.ssh/Amazon1.pub")]
 
   nb_users = 10
   # Shared password, randomly chosen if blank
   guest_passwd = ""
 
   # AWS specifics
-  region = "ca-central-1"
+  region = "us-east-1"
 }
 
 output "accounts" {
@@ -57,12 +57,12 @@ output "public_ip" {
 }
 
 ## Uncomment to register your domain name with CloudFlare
-# module "dns" {
-#   source           = "./dns/cloudflare"
-#   name             = module.aws.cluster_name
-#   domain           = module.aws.domain
-#   public_instances = module.aws.public_instances
-# }
+module "dns"
+  source           = "./dns/cloudflare"
+  name             = module.aws.cluster_name
+  domain           = module.aws.domain
+  public_instances = module.aws.public_instances
+}
 
 ## Uncomment to register your domain name with Google Cloud
 # module "dns" {
