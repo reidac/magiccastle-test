@@ -16,7 +16,7 @@ module "aws" {
   domain       = "hpc-carpentry.cloud"
   # Rocky Linux 9.4 -  ca-central-1
   # https://rockylinux.org/download
-  image = "ami-07fbc9d69b1aa88b9"
+  image = "ami-0c92b816e42b8f5ac" # Copied to US N Va zone.
 
   instances = {
     mgmt  = { type = "t3.large", count = 1, tags = ["mgmt", "puppet", "nfs"] },
