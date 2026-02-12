@@ -16,8 +16,8 @@ module "aws" {
   domain       = "hpc-carpentry.cloud"
   # Rocky Linux 9.4 -  ca-central-1
   # https://rockylinux.org/download
-  image = "ami-0c92b816e42b8f5ac" # Copied to US N Va zone.
-
+  # image = "ami-0c92b816e42b8f5ac" # Copied to US N Va zone. Failed manual dnf update.
+  image = ami-000c8a51edd193535
   instances = {
     mgmt  = { type = "t3.large", count = 1, tags = ["mgmt", "puppet", "nfs"] },
     login = { type = "t3.medium", count = 1, tags = ["login", "public", "proxy"] },
@@ -38,7 +38,8 @@ module "aws" {
     }
   }
 
-  public_keys = [file("~/.ssh/Amazon1.pub")]
+  # public_keys = [file("~/.ssh/Amazon1.pub")]
+  key_name = "Amazon1"
 
   nb_users = 10
   # Shared password, randomly chosen if blank
