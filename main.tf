@@ -38,8 +38,8 @@ module "aws" {
     }
   }
 
-  # public_keys = [file("~/.ssh/Amazon1.pub")]
-  key_name = "Amazon1"
+  # Probably this should be a variable?
+  public_keys = [file("./aws_special.pub")]
 
   nb_users = 10
   # Shared password, randomly chosen if blank
