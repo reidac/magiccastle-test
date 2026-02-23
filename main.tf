@@ -75,6 +75,6 @@ module "dns"
 #   public_instances = module.aws.public_instances
 # }
 
-# output "hostnames" {
-# 	value = module.dns.hostnames
-# }
+output "hostnames" {
+	value = module.dns.hostnames
+}
